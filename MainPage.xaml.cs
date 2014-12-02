@@ -1,18 +1,18 @@
-﻿using System;
+﻿using CarouselControl.UserControls;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace CarouselControl
 {
@@ -23,16 +23,31 @@ namespace CarouselControl
     {
         public MainPage()
         {
-            this.InitializeComponent();
-        }
+            try
+            {
+                this.InitializeComponent();
 
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.  The Parameter
-        /// property is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
+
+                MyCarouselControl carouselControl = new MyCarouselControl()
+                {
+                    Images = new List<BitmapImage>() 
+                {
+                    new BitmapImage(new Uri("ms-appx:///Assets/office_ipad01.png", UriKind.Absolute)),
+                    new BitmapImage(new Uri("ms-appx:///Assets/office_ipad02.png", UriKind.Absolute)),
+                    new BitmapImage(new Uri("ms-appx:///Assets/office_ipad03.png", UriKind.Absolute))
+                },
+                    CycleTimeInSeconds = 5,
+                    SelectedCarouselCircleColor = Colors.DimGray
+                };
+
+                container.Children.Add(carouselControl);
+                carouselControl.StartRotation();
+            }
+            catch (Exception ex)
+            {
+                Windows.UI.Popups.MessageDialog dialog = new Windows.UI.Popups.MessageDialog(ex.Message);          
+                dialog.ShowAsync();
+            }
         }
     }
 }

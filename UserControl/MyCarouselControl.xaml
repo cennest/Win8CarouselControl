@@ -1,0 +1,46 @@
+﻿<UserControl
+    x:Class="CarouselControl.UserControls.MyCarouselControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CarouselControl.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="768"
+    d:DesignWidth="1366">
+    
+    <Grid Background="Green">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Image Margin="0,50,0,0" Grid.Row="0" Name="RotatingImage" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="3"></Image>
+        <Button Grid.Row="0" Grid.Column="0" Name="LeftNavButton" Click="LeftOrRightNavigationNavButton_Click" Style="{StaticResource NavButtonStyle}">
+            <TextBlock Text="" VerticalAlignment="Center" Height="123" Width="50" Foreground="White"/>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="2" Name="RightNavButton" Click="LeftOrRightNavigationNavButton_Click" Style="{StaticResource NavButtonStyle}">
+            <TextBlock Text="" VerticalAlignment="Center" Height="123" Width="43" Foreground="White"/>
+        </Button>
+
+        <ItemsControl Grid.Row="1" Grid.ColumnSpan="3" Name="CarouselCircles" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ItemsControl.ItemContainerTransitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Top"/>
+                </TransitionCollection>
+            </ItemsControl.ItemContainerTransitions>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.Items>
+
+            </ItemsControl.Items>
+        </ItemsControl>
+    </Grid>
+</UserControl>
